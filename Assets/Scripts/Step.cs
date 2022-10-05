@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public struct Step
+public readonly struct Step
 {
-    public Vector2Int pos;
-    public Vector2Int speed;
-    public Vector2Int firstStep;
+    public Vector2Int pos { get; }
+    public Vector2Int speed { get; }
+    public Vector2Int firstStep { get; }
 
     public Step(Vector2Int pos, Vector2Int speed, Vector2Int firstStep)
     {
