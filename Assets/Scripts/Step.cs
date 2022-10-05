@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Step
+public struct Step
 {
     public Vector2Int pos;
     public Vector2Int speed;
@@ -20,12 +20,10 @@ public class Step
         return pos.x + (pos.y * 100) + ((int) speed.magnitude * 10000);
     }
 
-    public override bool Equals(System.Object obj)
+    public override bool Equals(object obj)
     {
-        if ((obj == null) || GetType() != obj.GetType())
+        if (!(obj is Step other))
             return false;
-
-        Step other = obj as Step;
 
         //No need to check for the equality of first step!
         return other.pos.Equals(pos) && other.speed.Equals(speed);

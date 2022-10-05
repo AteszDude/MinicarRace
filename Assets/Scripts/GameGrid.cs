@@ -190,11 +190,11 @@ public class GameGrid : MonoBehaviour
 
         int layer = getDistanceKey(edgeFilter);
 
-        //Random finish target
-        //GridCell target = Utility.Shuffle(finishes)[0];
-        
-        int distance = Int32.MaxValue;
-        Step bestStep = null;
+       
+        Step bestStep = steps[steps.Count - 1];
+        int distance = getGrid(bestStep.pos).GETDistance(layer);
+
+        steps.RemoveAt(steps.Count - 1);
         
         //Get distance from finish
         foreach (var step in steps)
@@ -247,7 +247,6 @@ public class GameGrid : MonoBehaviour
             }
             nextPoints = new List<GridCell>(newPoints);
         }
-
 
         if (inc == null || inc.Length == 0)
             return;
