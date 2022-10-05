@@ -110,7 +110,7 @@ public class GameGrid : MonoBehaviour
                 }
             }
         }
-        MakeDistances(new int[] {4, 2, 1}, 0);
+        MakeDistances(null, 0);
     }
 
     public GridCell getGrid(int x, int y)
