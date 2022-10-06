@@ -9,8 +9,6 @@ public class GameLogic : MonoBehaviour
 {
     public Racer player;
     
-    private bool gameStarted;
-
     [SerializeField] private List<Racer> players; // This stores the order of players and it could be shuffled
     private List<Racer> activePlayers; // Currently in race
     private List<Racer> winners;
@@ -24,19 +22,9 @@ public class GameLogic : MonoBehaviour
     [SerializeField] private GameObject menuUI;
     [SerializeField] private TMP_Text menuText;
 
-    
-    private void Update()
-    {
-        if (!gameStarted)
-        {
-            InitGame();
-            gameStarted = true;
-        }
-    }
 
-    private void InitGame()
+    private void Start()
     {
-
         if (SceneInfo.CustomAINUM)
         {
             int diff = players.Count - SceneInfo.AI - 2;
