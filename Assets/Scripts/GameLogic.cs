@@ -110,7 +110,7 @@ public class GameLogic : MonoBehaviour
 
     private void movePlayer()
     {
-        var reachableGrids = GameGrid.Instance.GetReachableGrids(player.GetPosition(), player.speed, true);
+        var reachableGrids = GameGrid.Instance.GetReachableGrids(player.GetPosition(), player.Speed, true);
 
         if (reachableGrids.Length == 0)
         {

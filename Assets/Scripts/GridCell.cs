@@ -65,7 +65,7 @@ public class GridCell : MonoBehaviour
         }
 
         isOccupied = true;
-        racer.speed = new Vector2Int(posX, posY) - racer.Cell.GetPosition();
+        racer.Speed = new Vector2Int(posX, posY) - racer.Cell.GetPosition();
 
         racer.setCell(this, true);
 

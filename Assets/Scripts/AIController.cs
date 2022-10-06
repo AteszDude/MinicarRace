@@ -40,12 +40,12 @@ public class AIController : MonoBehaviour
         
         //DEPTH 1
 
-        var firstGrids = GameGrid.Instance.GetReachableGrids(racer.GetPosition(), racer.speed, true);
+        var firstGrids = GameGrid.Instance.GetReachableGrids(racer.GetPosition(), racer.Speed, true);
 
         foreach (var grid in firstGrids)
         {
             Step step = new Step(grid.GetPosition(),
-                racer.speed + (grid.GetPosition() - racer.GetPosition()), grid.GetPosition());
+                racer.Speed + (grid.GetPosition() - racer.GetPosition()), grid.GetPosition());
             steps.Add(step);
             //Debug.Log(step);
         }

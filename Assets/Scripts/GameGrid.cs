@@ -167,7 +167,7 @@ public class GameGrid : MonoBehaviour
         {
             players[i].setCell(startingLine[i], false);
             startingLine[i].AssignRacer(players[i]);
-            players[i].speed = new Vector2Int(0, 0);
+            players[i].Speed = new Vector2Int(0, 0);
         }
         
     }

@@ -5,8 +5,7 @@ using UnityEngine.Assertions;
 public class Racer : MonoBehaviour
 {
     public GridCell Cell { get; set; }
-
-    public Vector2Int speed = new Vector2Int(0, 0);
+    public Vector2Int Speed { get; set; }
 
     [SerializeField] private GameObject mesh;
     [SerializeField] private String name;
@@ -17,11 +16,6 @@ public class Racer : MonoBehaviour
         {
             mesh = gameObject;
         }
-    }
-
-    public Vector2Int GETNewSpeed(Vector2Int newPos)
-    {
-        return speed + newPos - Cell.GetPosition();
     }
 
     public override string ToString()
