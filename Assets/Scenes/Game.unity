@@ -279,7 +279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxDepth: 6
-  precision: 1
+  precision: 0
   edgeAvoidance: 030000000200000001000000
 --- !u!114 &395259722
 MonoBehaviour:
@@ -293,7 +293,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 456b0f84f24bba941b28c963fdccfc45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: {x: 0, y: 0}
   mesh: {fileID: 0}
   name: AI1
 --- !u!1 &470930181
@@ -753,7 +752,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 456b0f84f24bba941b28c963fdccfc45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: {x: 0, y: 0}
   mesh: {fileID: 1385163284}
   name: Attila
 --- !u!1001 &932779234
@@ -1267,7 +1265,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 456b0f84f24bba941b28c963fdccfc45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: {x: 0, y: 0}
   mesh: {fileID: 0}
   name: AI2
 --- !u!114 &1421147945
@@ -1797,7 +1794,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 456b0f84f24bba941b28c963fdccfc45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: {x: 0, y: 0}
   mesh: {fileID: 0}
   name: AI1
 --- !u!114 &1951875550

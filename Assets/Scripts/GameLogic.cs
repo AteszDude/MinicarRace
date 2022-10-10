@@ -56,6 +56,7 @@ public class GameLogic : MonoBehaviour
         continueTurn();
     }
 
+    // ReSharper disable Unity.PerformanceAnalysis
     private void continueTurn()
     {
         //True for AI players, false for players or when callback is needed
@@ -116,6 +117,7 @@ public class GameLogic : MonoBehaviour
     }
 
     // TO DO refactor
+    // ReSharper disable Unity.PerformanceAnalysis
     public void PlayerMoved(GridCell toCell)
     {
         GameGrid.Instance.ResetGrid();

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -8,7 +9,7 @@ public class GameGrid : MonoBehaviour
     private static GameGrid _instance;
     public static GameGrid Instance => _instance;
 
-    [SerializeField]private Texture2D[] maps;
+    [SerializeField] private Texture2D[] maps;
     private int height;
     private int width;
 
@@ -20,13 +21,13 @@ public class GameGrid : MonoBehaviour
     [SerializeField] private GameObject gridCellPrefab;
     private GridCell[,] gameGrid;
 
+    //This caches distances, the key is an array of int
     private Dictionary<String, int> distances;
     private int lastDistance;
     
     //Pathfinding
     private List<GridCell> finishes;
     private List<GridCell> starts;
-    private List<GridCell> checkpoints;
 
     private void Awake()
     {
@@ -39,6 +40,9 @@ public class GameGrid : MonoBehaviour
         CreateGrid();
     }
 
+    /// <summary>
+    ///Get or create a new key in the entry
+    /// </summary>
     private int getDistanceKey(int[] edgeFilter)
     {
         if (edgeFilter == null || edgeFilter.Length == 0)
@@ -65,6 +69,9 @@ public class GameGrid : MonoBehaviour
         return lastDistance;
     }
     
+    /// <summary>
+    ///Creates a grid from texture and inits a layer of distances
+    /// </summary>
     private void CreateGrid()
     {
         Texture2D map = maps[SceneInfo.Map];
@@ -189,8 +196,7 @@ public class GameGrid : MonoBehaviour
         Assert.IsTrue(finishes.Count > 0);
 
         int layer = getDistanceKey(edgeFilter);
-
-       
+        
         Step bestStep = steps[steps.Count - 1];
         int distance = getGrid(bestStep.pos).GETDistance(layer);
 
@@ -212,9 +218,15 @@ public class GameGrid : MonoBehaviour
         
         return bestStep;
     }
-
-    private void MakeDistances(int[] inc, int layer)
+    
+    /// <summary>
+    /// Creates a new layer of distance array
+    /// </summary>
+    private void MakeDistances([NotNull] IReadOnlyList<int>
+        inc, int layer)
     {
+        if (inc == null) throw new ArgumentNullException(nameof(inc));
+        
         Debug.Log("Distances called");
         
         List<GridCell> nextPoints = new List<GridCell>(finishes);
@@ -248,7 +260,7 @@ public class GameGrid : MonoBehaviour
             nextPoints = new List<GridCell>(newPoints);
         }
 
-        if (inc == null || inc.Length == 0)
+        if (inc == null || inc.Count == 0)
             return;
         
         for (int x = 0; x < width; x++)
@@ -257,23 +269,23 @@ public class GameGrid : MonoBehaviour
             {
                 if (getGrid(x, y).type == GridCell.GridType.Unoccupiable)
                 {
-                    for (int i = 0; x + i + 1 < width && i < inc.Length &&
+                    for (int i = 0; x + i + 1 < width && i < inc.Count &&
                                         getGrid(x + i + 1, y).type == GridCell.GridType.Racetrack; i++)
                     {
                         getGrid(x + i + 1, y).AddDistance(layer, inc[i]);
                     }
-                    for (int i = 0; x - i - 1> 0 && i < inc.Length &&
+                    for (int i = 0; x - i - 1> 0 && i < inc.Count &&
                                         getGrid(x - i - 1, y).type == GridCell.GridType.Racetrack; i++)
                     {
                         getGrid(x - i - 1, y).AddDistance(layer, inc[i]);
                     }
                     
-                    for (int i = 0; y + i + 1< height && i < inc.Length &&
+                    for (int i = 0; y + i + 1< height && i < inc.Count &&
                                         getGrid(x, y + i + 1).type == GridCell.GridType.Racetrack; i++)
                     {
                         getGrid(x, y + i + 1).AddDistance(layer, inc[i]);
                     }
-                    for (int i = 0; y - i - 1> 0 && i < inc.Length &&
+                    for (int i = 0; y - i - 1> 0 && i < inc.Count &&
                                         getGrid(x, y - i - 1).type == GridCell.GridType.Racetrack; i++)
                     {
                         getGrid(x, y - i - 1).AddDistance(layer, inc[i]);
@@ -285,6 +297,10 @@ public class GameGrid : MonoBehaviour
 
     }
     
+    /// <summary>
+    /// Checks if the 9x9 field is free
+    /// </summary>
+    /// <param name="racerCounts">True if racers count as obstruction, otherwise false</param>
     public GridCell[] GetReachableGrids(Vector2Int pos, Vector2Int speed, bool racerCounts)
     {
         List<GridCell> result = new List<GridCell>();
