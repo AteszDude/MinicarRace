@@ -22,6 +22,7 @@ public class Racer : MonoBehaviour
     {
         return name;
     }
+    
 
     public Vector2Int GetPosition()
     {
