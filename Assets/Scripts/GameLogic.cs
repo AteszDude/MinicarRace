@@ -10,7 +10,6 @@ public class GameLogic : MonoBehaviour {
 
     [SerializeField] private List<Racer> players; // This stores the order of players and it could be shuffled
     private List<Racer> activePlayers; // Currently in race
-    private List<Racer> winners;
 
     private Racer[] endResult;
     private int firstPlace;
@@ -20,7 +19,6 @@ public class GameLogic : MonoBehaviour {
 
     [SerializeField] private GameObject menuUI;
     [SerializeField] private TMP_Text menuText;
-
 
     private void Start() {
         if (SceneInfo.CustomAINUM) {
@@ -65,7 +63,6 @@ public class GameLogic : MonoBehaviour {
 
             if (nextPlayer == activePlayers.Count)
                 nextPlayer = 0;
-
 
             AIController ai = activePlayers[nextPlayer].GetComponent<AIController>();
 
@@ -141,6 +138,11 @@ public class GameLogic : MonoBehaviour {
         }
 
         activePlayers.RemoveAt(nextPlayer);
+        
+        //Keep the player, just in case for handling input
+        if(racer.GetComponent<AIController>() != null)
+            racer.removeFromRace();
+
         nextPlayer--;
     }
 }

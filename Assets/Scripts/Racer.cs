@@ -35,6 +35,11 @@ public class Racer : MonoBehaviour {
         Cell = gridcell;
     }
 
+    public void removeFromRace() {
+        Cell.RemoveRacer();
+        gameObject.SetActive(false);
+    }
+
     public void resetRotation() {
         mesh.transform.rotation = Quaternion.Euler(0, 0, 0);
     }

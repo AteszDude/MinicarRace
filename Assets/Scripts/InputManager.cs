@@ -7,7 +7,6 @@ public class InputManager : MonoBehaviour {
 
     private static float speed = 2.0f;
 
-    // Update is called once per frame
     void Update() {
         GridCell cellisMouseOver = isMouseOver();
         if (cellisMouseOver != null) {
