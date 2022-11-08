@@ -271,7 +271,7 @@ public class GameGrid : MonoBehaviour {
     }
 
     /// <summary>
-    /// Checks if the 9x9 field is free
+    /// Checks if the 3x3 field is free
     /// </summary>
     /// <param name="racerCounts">True if racers count as obstruction, otherwise false</param>
     public GridCell[] GetReachableGrids(Vector2Int pos, Vector2Int speed, bool racerCounts) {
