@@ -21,6 +21,8 @@ public class GameLogic : MonoBehaviour {
     [SerializeField] private TMP_Text menuText;
 
     private void Start() {
+        InputManager.onMoved += PlayerMoved;
+        
         if (SceneInfo.CustomAINUM) {
             int diff = players.Count - SceneInfo.AI - 2;
             Assert.IsTrue(diff >= 0);
@@ -95,9 +97,8 @@ public class GameLogic : MonoBehaviour {
         }
     }
 
-    // TO DO refactor
     // ReSharper disable Unity.PerformanceAnalysis
-    public void PlayerMoved(GridCell toCell) {
+    private void PlayerMoved(GridCell toCell) {
         GameGrid.Instance.ResetGrid();
 
         player.Cell.RemoveRacer();

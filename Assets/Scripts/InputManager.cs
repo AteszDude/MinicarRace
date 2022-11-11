@@ -5,6 +5,9 @@ public class InputManager : MonoBehaviour {
     [SerializeField] private LayerMask whatIsAGridLayer;
     [SerializeField] private GameLogic _gameLogic;
 
+    public delegate void MoveAction(GridCell toCell);
+    public static event MoveAction onMoved;
+    
     private static float speed = 2.0f;
 
     void Update() {
@@ -12,7 +15,7 @@ public class InputManager : MonoBehaviour {
         if (cellisMouseOver != null) {
             if (Input.GetMouseButtonDown(0)) {
                 if (cellisMouseOver.CanPlayerSelect()) {
-                    _gameLogic.PlayerMoved(cellisMouseOver);
+                    onMoved(cellisMouseOver);
                 }
 
                 cellisMouseOver.Select();
