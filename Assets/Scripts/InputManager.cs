@@ -3,7 +3,6 @@ using UnityEngine;
 public class InputManager : MonoBehaviour {
     [SerializeField] private GameObject cameraPos;
     [SerializeField] private LayerMask whatIsAGridLayer;
-    [SerializeField] private GameLogic _gameLogic;
 
     public delegate void MoveAction(GridCell toCell);
     public static event MoveAction onMoved;
@@ -15,7 +14,7 @@ public class InputManager : MonoBehaviour {
         if (cellisMouseOver != null) {
             if (Input.GetMouseButtonDown(0)) {
                 if (cellisMouseOver.CanPlayerSelect()) {
-                    onMoved(cellisMouseOver);
+                    onMoved?.Invoke(cellisMouseOver);
                 }
 
                 cellisMouseOver.Select();
